@@ -1,0 +1,21 @@
+//LEDقناة الورشة ,,سلسلة شرح الاردوينو,,الدرس الثاني التحكم في شده اضاءة ال
+//كود برنامج وميض الليد عن طريق ضغط الزر
+//  https://github.com/Warsha249  ==gethub رابط حساب
+// تعريف أرجل التوصيل
+const int buttonPin = 2;  // رقم الرجل المتصلة بالزر
+const int ledPin = 9;    // LEDرقم الرجل المتصلة بالـ 
+
+void setup() {
+  
+  pinMode(ledPin, OUTPUT);
+}
+
+void loop() {
+  int buttonState = digitalRead(buttonPin); // قراءة حالة الزر
+  
+  if (buttonState == LOW) { // إذا كان الزر مضغوطًا
+    digitalWrite(ledPin, HIGH); // LEDتشغيل الـ 
+  } else {
+    digitalWrite(ledPin, LOW); // LEDإطفاء الـ 
+  }
+}
