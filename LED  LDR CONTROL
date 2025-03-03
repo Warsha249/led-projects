@@ -1,0 +1,18 @@
+//LEDقناة الورشة ,,سلسلة شرح الاردوينو,,الدرس الثاني التحكم في شده اضاءة ال
+//كود برنامج تحكم في شده اضاءة ليد عن طريق مقاومه ضوئية 
+//  https://github.com/Warsha249  ==gethub رابط
+
+// تعريف أرجل التوصيل
+const int ldrPin = A0;   // (LDR)رقم الرجل المتصلة بالمقاومة الضوئية 
+const int ledPin = 9;    // LEDرقم الرجل المتصلة بالـ  (PWMيجب أن يكون على مخرج )
+
+void setup() {
+  pinMode(ledPin, OUTPUT);
+}
+
+void loop() {
+  int ldrValue = analogRead(ldrPin); // قراءة قيمة المقاومة الضوئية
+  int brightness = map(ldrValue, 0, 1023, 0, 255); // تحويل القيمة إلى مدى 0-255
+  
+  analogWrite(ledPin, brightness);  //     ضبط سطوع الليد بناءً على شدة الإضاءة
+}
