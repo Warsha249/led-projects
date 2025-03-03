@@ -1,0 +1,27 @@
+//LEDقناة الورشة ,,سلسلة شرح الاردوينو,,الدرس الثاني التحكم في شده اضاءة ال
+//كود برنامج تشغيل الليد عند ضغط الزر و اطفائه عند الضغط مرة اخرى
+//  https://github.com/Warsha249  ==gethub رابط حساب
+
+// تعريف أرجل التوصيل
+const int buttonPin = 2;  // رقم الرجل المتصلة بالزر
+const int ledPin = 13;    // LEDرقم الرجل المتصلة بالـ 
+
+bool ledState = false; // LEDحالة الـ 
+bool lastButtonState = HIGH;
+
+void setup() {
+  pinMode(buttonPin, INPUT_PULLUP); // تفعيل المقاومة الداخلية
+  pinMode(ledPin, OUTPUT);
+}
+
+void loop() {
+  bool buttonState = digitalRead(buttonPin); // قراءة حالة الزر
+  
+  if (buttonState == LOW && lastButtonState == HIGH) { // إذا تم الضغط على الزر
+    ledState = !ledState; // LEDتبديل حالة الـ 
+    digitalWrite(ledPin, ledState);
+    delay(200); // منع التبديل السريع (Debouncing)
+  }
+  
+  lastButtonState = buttonState; // تحديث حالة الزر السابقة
+}
