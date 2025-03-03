@@ -1,0 +1,17 @@
+//LEDقناة الورشة ,,سلسلة شرح الاردوينو,,الدرس الثاني التحكم في شده اضاءة ال
+//كود برنامج تحكم في شده اضاءة الليد عن طريق مقاومه متغيرة 
+//  https://github.com/Warsha249  ==gethub رابط
+// تعريف أرجل التوصيل
+const int ledPin = 9;    // LEDرقم الرجل المتصلة بالـ  (PWMيجب أن يكون على مخرج )
+const int potPin = A0;   // رقم الرجل المتصلة بالبوتينشوميتر
+
+void setup() {
+  pinMode(ledPin, OUTPUT);
+}
+
+void loop() {
+  int potValue = analogRead(potPin); // قراءة قيمة البوتينشوميتر
+  int brightness = map(potValue, 0, 1023, 0, 255); // تحويل القيمة إلى مدى 0-255
+  
+  analogWrite(ledPin, brightness); // ضبط سطوع الـ LED تدريجياً
+}
