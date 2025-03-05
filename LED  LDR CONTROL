@@ -1,10 +1,10 @@
-//LEDقناة الورشة ,,سلسلة شرح الاردوينو,,الدرس الثاني التحكم في شده اضاءة ال
-//كود برنامج تحكم في شده اضاءة ليد عن طريق مقاومه ضوئية 
-//  https://github.com/Warsha249  ==gethub رابط
+// LED قناة الورشة ,, سلسلة شرح الأردوينو ,, الدرس الثاني التحكم في شدة إضاءة الـ 
+// كود برنامج تحكم في شدة إضاءة ليد عن طريق مقاومة ضوئية
+//  https://github.com/Warsha249  == gethub رابط
 
 // تعريف أرجل التوصيل
-const int ldrPin = A0;   // (LDR)رقم الرجل المتصلة بالمقاومة الضوئية 
-const int ledPin = 9;    // LEDرقم الرجل المتصلة بالـ  (PWMيجب أن يكون على مخرج )
+const int ldrPin = A0;   // (LDR) رقم الرجل المتصلة بالمقاومة الضوئية
+const int ledPin = 9;    // LED رقم الرجل المتصلة بالـ (PWM يجب أن يكون على مخرج)
 
 void setup() {
   pinMode(ledPin, OUTPUT);
@@ -12,7 +12,14 @@ void setup() {
 
 void loop() {
   int ldrValue = analogRead(ldrPin); // قراءة قيمة المقاومة الضوئية
-  int brightness = map(ldrValue, 0, 1023, 0, 255); // تحويل القيمة إلى مدى 0-255
   
-  analogWrite(ledPin, brightness);  //     ضبط سطوع الليد بناءً على شدة الإضاءة
+  // عكس القيم لجعل الضوء يقل عند زيادة الإضاءة ويزيد عند الظلام
+  int brightness = map(ldrValue, 300, 900, 255, 0);  
+
+  // التأكد من أن القيم لا تخرج عن النطاق الصحيح
+  brightness = constrain(brightness, 0, 255);
+
+  analogWrite(ledPin, brightness);  // ضبط سطوع الليد بناءً على شدة الإضاءة
+  
+  delay(50); // تقليل الوميض العشوائي
 }
